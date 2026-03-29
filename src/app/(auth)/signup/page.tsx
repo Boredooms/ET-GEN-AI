@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signUp, authClient } from "@/lib/auth-client";
 import { ArrowRight, Loader2, AlertCircle, Mail, Lock, User, GraduationCap, TrendingUp, Briefcase, Rocket } from "lucide-react";
 import Link from "next/link";
@@ -40,8 +40,10 @@ const USER_ROLES = [
   },
 ];
 
-export default function SignUpPage() {
+function SignUpForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/dashboard";
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -125,9 +127,9 @@ export default function SignUpPage() {
               }
             }
             
-            // Redirect to dashboard after successful signup
+            // Redirect to original page or dashboard after successful signup
             setIsLoading(false);
-            router.push("/dashboard");
+            router.push(redirect);
           },
           onError: (ctx) => {
             setError(ctx.error?.message || "Failed to create account");
@@ -363,5 +365,17 @@ export default function SignUpPage() {
         </p>
       </motion.div>
     </div>
+  );
+}
+
+export default function SignUpPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[oklch(0.07_0_0)] flex items-center justify-center p-4">
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      </div>
+    }>
+      <SignUpForm />
+    </Suspense>
   );
 }
