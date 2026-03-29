@@ -27,35 +27,35 @@ Go to your Vercel project settings → Environment Variables and **update/add** 
 
 ```bash
 # Use your ACTUAL Vercel deployment URL (check your deployment URL)
-BETTER_AUTH_URL=https://et-gen-ai.vercel.app
-SITE_URL=https://et-gen-ai.vercel.app
-NEXT_PUBLIC_APP_URL=https://et-gen-ai.vercel.app
-NEXT_PUBLIC_SITE_URL=https://et-gen-ai.vercel.app
+BETTER_AUTH_URL=https://your-app.vercel.app
+SITE_URL=https://your-app.vercel.app
+NEXT_PUBLIC_APP_URL=https://your-app.vercel.app
+NEXT_PUBLIC_SITE_URL=https://your-app.vercel.app
 
-# Keep existing values
-BETTER_AUTH_SECRET=57aMUTDuP6yJfnROF2Cf6yZHW76Gw4HfhGr7rgMxKIU=
-NEXTAUTH_SECRET=genzet-ai-secret-2026-change-in-production
+# Authentication secrets (generate new ones!)
+BETTER_AUTH_SECRET=your-better-auth-secret-here
+NEXTAUTH_SECRET=your-nextauth-secret-here
 
 # Convex URLs - PRODUCTION DEPLOYMENT
-# IMPORTANT: Use prod deployment (kindred-hawk-939), NOT dev (rapid-schnauzer-303)
-CONVEX_URL=https://kindred-hawk-939.eu-west-1.convex.cloud
-NEXT_PUBLIC_CONVEX_URL=https://kindred-hawk-939.eu-west-1.convex.cloud
-NEXT_PUBLIC_CONVEX_SITE_URL=https://kindred-hawk-939.eu-west-1.convex.site
+# Get from: https://dashboard.convex.dev/
+CONVEX_URL=https://your-prod-deployment.convex.cloud
+NEXT_PUBLIC_CONVEX_URL=https://your-prod-deployment.convex.cloud
+NEXT_PUBLIC_CONVEX_SITE_URL=https://your-prod-deployment.convex.site
 
-# Ollama
-OLLAMA_API_KEY=9052de2ac79244e8a8b43fd5be4930a1.scaIJY1AcIK_IbeFM5-SSFyX
+# Ollama (get your own API key)
+OLLAMA_API_KEY=your-ollama-api-key-here
 OLLAMA_BASE_URL=https://api.ollama.com
 
-# Zerodha (update callback URL to production)
-ZERODHA_API_KEY=sthrlw2yrefhcuva
-ZERODHA_API_SECRET=p2580bxcc5adv5azlwgwzotdmvvsq8i0
-ZERODHA_REDIRECT_URL=https://et-gen-ai.vercel.app/api/providers/zerodha/callback
+# Zerodha (get from https://kite.zerodha.com/apps)
+ZERODHA_API_KEY=your-zerodha-api-key
+ZERODHA_API_SECRET=your-zerodha-api-secret
+ZERODHA_REDIRECT_URL=https://your-app.vercel.app/api/providers/zerodha/callback
 
 # Turbopack skip (for production builds)
 NEXT_SKIP_TURBOPACK=1
 
 # Convex deployment
-CONVEX_DEPLOYMENT=prod:kindred-hawk-939
+CONVEX_DEPLOYMENT=prod:your-deployment-name
 ```
 
 ### Step 2: Ensure All URLs Match
