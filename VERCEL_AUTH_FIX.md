@@ -36,10 +36,11 @@ NEXT_PUBLIC_SITE_URL=https://et-gen-ai.vercel.app
 BETTER_AUTH_SECRET=57aMUTDuP6yJfnROF2Cf6yZHW76Gw4HfhGr7rgMxKIU=
 NEXTAUTH_SECRET=genzet-ai-secret-2026-change-in-production
 
-# Convex URLs (already correct)
+# Convex URLs - PRODUCTION DEPLOYMENT
+# IMPORTANT: Use prod deployment (kindred-hawk-939), NOT dev (rapid-schnauzer-303)
 CONVEX_URL=https://kindred-hawk-939.eu-west-1.convex.cloud
 NEXT_PUBLIC_CONVEX_URL=https://kindred-hawk-939.eu-west-1.convex.cloud
-NEXT_PUBLIC_CONVEX_SITE_URL=https://rapid-schnauzer-303.eu-west-1.convex.site
+NEXT_PUBLIC_CONVEX_SITE_URL=https://kindred-hawk-939.eu-west-1.convex.site
 
 # Ollama
 OLLAMA_API_KEY=9052de2ac79244e8a8b43fd5be4930a1.scaIJY1AcIK_IbeFM5-SSFyX
