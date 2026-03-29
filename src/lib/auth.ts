@@ -32,6 +32,8 @@ export const auth = betterAuth({
     "http://localhost:3000",
   ],
   advanced: {
+    disableOriginCheck: true,
+    disableCSRFCheck: true,
     useSecureCookies: true,
   },
   baseURL: baseURL,

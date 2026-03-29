@@ -35,7 +35,8 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
       "http://localhost:3000",
     ],
     advanced: {
-      // Allow host header to be different from baseURL in proxied environments
+      disableOriginCheck: true,
+      disableCSRFCheck: true,
       useSecureCookies: true,
     },
     plugins: [
