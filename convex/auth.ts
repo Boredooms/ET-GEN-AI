@@ -14,7 +14,7 @@ export const authComponent = createClient<DataModel>(components.betterAuth);
 
 export const createAuth = (ctx: GenericCtx<DataModel>) => {
   const secret = process.env.BETTER_AUTH_SECRET;
-  
+
   if (!secret) {
     throw new Error("BETTER_AUTH_SECRET environment variable is not set");
   }
