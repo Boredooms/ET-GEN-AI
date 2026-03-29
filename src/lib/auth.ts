@@ -1,5 +1,14 @@
 import { betterAuth } from "better-auth";
 
+const getBaseURL = () => {
+  if (process.env.BETTER_AUTH_URL) return process.env.BETTER_AUTH_URL;
+  if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+};
+
+const baseURL = getBaseURL();
+
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
@@ -18,9 +27,11 @@ export const auth = betterAuth({
     },
   },
   trustedOrigins: [
-    process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+    baseURL,
+    "https://et-gen-ai.vercel.app",
+    "http://localhost:3000"
   ],
-  baseURL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+  baseURL: baseURL,
   secret: process.env.BETTER_AUTH_SECRET || "secret",
 });
 

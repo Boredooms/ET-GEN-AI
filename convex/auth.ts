@@ -28,6 +28,11 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
       enabled: true,
       requireEmailVerification: false,
     },
+    trustedOrigins: [
+      siteUrl,
+      "https://et-gen-ai.vercel.app",
+      "https://et-gen-ai-xi.vercel.app",
+    ],
     plugins: [
       // The Convex plugin is required for Convex compatibility
       convex({ authConfig }),
