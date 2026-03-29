@@ -74,7 +74,7 @@ export default function LoginPage() {
         {/* Logo/Brand */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <h1 className="font-editorial text-3xl text-foreground mb-2">CollegeSide</h1>
+            <h1 className="font-editorial text-3xl text-foreground mb-2">GENZET AI</h1>
           </Link>
           <p className="text-muted-foreground">Welcome back! Sign in to your account</p>
         </div>

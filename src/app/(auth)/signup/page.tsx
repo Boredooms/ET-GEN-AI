@@ -152,7 +152,7 @@ export default function SignUpPage() {
         {/* Logo/Brand */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <h1 className="font-editorial text-3xl text-foreground mb-2">CollegeSide</h1>
+            <h1 className="font-editorial text-3xl text-foreground mb-2">GENZET AI</h1>
           </Link>
           <p className="text-muted-foreground">Create your account to get started</p>
         </div>
