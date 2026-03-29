@@ -61,14 +61,15 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                 </div>
                 <span className="text-sm font-semibold">GENZET AI</span>
               </div>
-              <p className="max-w-xs text-xs text-muted-foreground">
-                Economic Times&apos; personal business concierge. Understand who you are, guide you to what matters.
+              <p className="max-w-xs text-xs text-muted-foreground leading-relaxed">
+                A personal business concierge developed for the **Economic Times (ET) Gen AI Hackathon**. 
+                Transforming how readers engage with business intelligence.
               </p>
             </div>
             <div className="flex items-center gap-6 text-xs text-muted-foreground">
               <Link href={ROUTES.PRIVACY} className="hover:text-foreground transition-colors">Privacy</Link>
               <span>© 2026 GENZET AI</span>
-              <span className="et-badge">ET Hackathon</span>
+              <span className="et-badge">ET Gen AI Hackathon &apos;26 Submission</span>
             </div>
           </div>
         </div>

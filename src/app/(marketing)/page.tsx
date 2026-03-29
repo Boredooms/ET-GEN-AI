@@ -70,9 +70,11 @@ export default function HomePage() {
           className="relative z-10 max-w-4xl"
         >
           {/* Badge */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[oklch(1_0_0_/_10%)] bg-[oklch(0.11_0_0)] px-4 py-1.5">
-            <span className="et-badge">ET Hackathon</span>
-            <span className="text-xs text-muted-foreground">AI Concierge for Economic Times</span>
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[oklch(1_0_0_/_10%)] bg-[oklch(0.11_0_0)] px-4 py-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+            <span className="et-badge">Official Submission</span>
+            <span className="text-xs text-muted-foreground font-medium tracking-wide bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+              Economic Times Gen AI Hackathon &apos;26
+            </span>
           </div>
 
           {/* Headline */}
@@ -255,8 +257,11 @@ export default function HomePage() {
             <h2 className="mb-4 text-3xl font-editorial text-foreground md:text-5xl">
               Your ET journey starts with one question.
             </h2>
-            <p className="mb-10 text-muted-foreground">
+            <p className="mb-4 text-muted-foreground">
               Three minutes of profiling. A lifetime of personalized intelligence.
+            </p>
+            <p className="mb-10 text-[10px] uppercase tracking-widest text-muted-foreground/50 font-semibold italic">
+              Developed exclusively for the ET Gen AI Hackathon.
             </p>
             <Link
               href={ROUTES.ONBOARDING}
