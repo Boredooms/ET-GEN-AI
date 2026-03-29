@@ -1,13 +1,40 @@
 import { betterAuth } from "better-auth";
 
 const getBaseURL = () => {
-  if (process.env.BETTER_AUTH_URL) return process.env.BETTER_AUTH_URL;
-  if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  // Priority order for base URL determination
+  if (process.env.BETTER_AUTH_URL) {
+    return process.env.BETTER_AUTH_URL.replace(/\/$/, ''); // Remove trailing slash
+  }
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    return process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, '');
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
   return "http://localhost:3000";
 };
 
 const baseURL = getBaseURL();
+
+// Collect all possible origins for production
+const getAllowedOrigins = () => {
+  const origins = new Set([
+    baseURL,
+    "http://localhost:3000",
+    "http://localhost:3001",
+  ]);
+
+  // Add all Vercel-related URLs
+  if (process.env.BETTER_AUTH_URL) origins.add(process.env.BETTER_AUTH_URL.replace(/\/$/, ''));
+  if (process.env.NEXT_PUBLIC_APP_URL) origins.add(process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, ''));
+  if (process.env.SITE_URL) origins.add(process.env.SITE_URL.replace(/\/$/, ''));
+  if (process.env.VERCEL_URL) origins.add(`https://${process.env.VERCEL_URL}`);
+
+  // Add wildcard for all Vercel preview deployments
+  origins.add("https://*.vercel.app");
+
+  return Array.from(origins);
+};
 
 export const auth = betterAuth({
   emailAndPassword: {
@@ -26,15 +53,13 @@ export const auth = betterAuth({
       maxAge: 60 * 5, // 5 minutes
     },
   },
-  trustedOrigins: [
-    baseURL,
-    "https://*.vercel.app",
-    "http://localhost:3000",
-  ],
+  trustedOrigins: getAllowedOrigins(),
   advanced: {
-    disableOriginCheck: true,
-    disableCSRFCheck: true,
-    useSecureCookies: true,
+    // IMPORTANT: Keep these disabled in production for security
+    // Only the trustedOrigins list should control access
+    disableOriginCheck: process.env.NODE_ENV === "development",
+    disableCSRFCheck: process.env.NODE_ENV === "development",
+    useSecureCookies: process.env.NODE_ENV === "production",
   },
   baseURL: baseURL,
   secret: process.env.BETTER_AUTH_SECRET || "secret",
