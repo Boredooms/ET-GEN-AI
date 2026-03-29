@@ -28,9 +28,12 @@ export const auth = betterAuth({
   },
   trustedOrigins: [
     baseURL,
-    "https://et-gen-ai.vercel.app",
-    "http://localhost:3000"
+    "https://*.vercel.app",
+    "http://localhost:3000",
   ],
+  advanced: {
+    useSecureCookies: true,
+  },
   baseURL: baseURL,
   secret: process.env.BETTER_AUTH_SECRET || "secret",
 });

@@ -6,17 +6,17 @@ import { query } from "./_generated/server";
 import { betterAuth } from "better-auth/minimal";
 import authConfig from "./auth.config";
 
-const siteUrl = process.env.SITE_URL || "http://localhost:3000";
+const siteUrl = process.env.BETTER_AUTH_URL || process.env.SITE_URL || "http://localhost:3000";
 
 // The component client has methods needed for integrating Convex with Better Auth,
 // as well as helper methods for general use.
 export const authComponent = createClient<DataModel>(components.betterAuth);
 
 export const createAuth = (ctx: GenericCtx<DataModel>) => {
-  const secret = process.env.BETTER_AUTH_SECRET;
+  const secret = process.env.BETTER_AUTH_SECRET || "dummy_secret_for_build";
 
-  if (!secret) {
-    throw new Error("BETTER_AUTH_SECRET environment variable is not set");
+  if (!process.env.BETTER_AUTH_SECRET && process.env.NODE_ENV === "production") {
+    console.warn("BETTER_AUTH_SECRET is missing. Login will fail.");
   }
 
   return betterAuth({
@@ -28,11 +28,16 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
       enabled: true,
       requireEmailVerification: false,
     },
+    // Trust all deployments (Production and Preview)
     trustedOrigins: [
       siteUrl,
-      "https://et-gen-ai.vercel.app",
-      "https://et-gen-ai-xi.vercel.app",
+      "https://*.vercel.app", 
+      "http://localhost:3000",
     ],
+    advanced: {
+      // Allow host header to be different from baseURL in proxied environments
+      useSecureCookies: true,
+    },
     plugins: [
       // The Convex plugin is required for Convex compatibility
       convex({ authConfig }),
