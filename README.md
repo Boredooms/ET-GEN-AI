@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ET-GEN-AI: Financial Intelligence Cockpit
 
-## Getting Started
+A high-fidelity, professional-grade financial intelligence platform built with **Next.js 15**, **Convex**, **Tailwind CSS v4**, and **Lucide React**.
 
-First, run the development server:
+## ✨ Features
+
+- ✅ **Live Market Data**: Real-time tracking of Nifty 50 and Sensex via custom API proxies.
+- ✅ **Sector Health Engine**: Dynamic "Invest/Avoid" signals for key Indian sectors (Banks, IT, Auto, etc.).
+- ✅ **Strategic Portfolio Visuals**: Premium, glassmorphic portfolio distribution charts with risk-level indicators.
+- ✅ **Personalized Insights**: AI-driven financial analysis and "Investment DNA" profiling.
+- ✅ **Modern Design**: High-end dark mode aesthetic with smooth transitions and responsive layouts.
+- ✅ **Secure Infrastructure**: Powered by Convex backend and Better-Auth for user management.
+
+## 📋 Project Structure
+
+```
+src/
+├── app/                      # Next.js app router
+│   ├── (app)/                # Authenticated application routes
+│   │   ├── insights/         # Main financial dashboard
+│   │   ├── profile/          # User profile & Investment DNA
+│   │   └── settings/         # App & Account configuration
+│   ├── api/                  # Backend API proxies (Market data, etc.)
+│   └── layout.tsx            # Root layout
+├── components/
+│   ├── charts/               # Advanced financial visualizations
+│   ├── common/               # Reusable UI components
+│   └── ui/                  # shadcn/ui components
+├── config/                  # App & Environment configuration
+├── hooks/                   # Custom React hooks
+├── lib/                     # Core utilities & Auth setup
+├── types/                   # TypeScript definitions
+└── utils/                   # Business logic utilities
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ and npm
+- Convex Account
+- Zerodha/Upstox API keys (Optional for trading features)
+
+### Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the platform.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 🔐 Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+To run this project, you will need to add the following environment variables to your `.env.local` file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+# Convex
+CONVEX_URL=your_convex_url
+NEXT_PUBLIC_CONVEX_URL=your_convex_url
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Auth
+BETTER_AUTH_SECRET=your_secret
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 
-## Deploy on Vercel
+# Market Data (Optional)
+ZERODHA_API_KEY=your_key
+ZERODHA_API_SECRET=your_secret
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js 15+](https://nextjs.org)
+- [Convex](https://convex.dev)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [Better Auth](https://better-auth.com)
+- [Lucide Icons](https://lucide.dev)
+
+---
+
+Built by **Trellis Solutions**. Elevate your financial intelligence.
