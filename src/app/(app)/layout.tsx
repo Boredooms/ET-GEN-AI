@@ -3,15 +3,25 @@
 import { Sidebar } from "@/components/layout/sidebar";
 import { TopBar } from "@/components/layout/top-bar";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Menu, X, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useSession } from "@/lib/auth-client";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: session, isPending: sessionLoading } = useSession();
   const isConcierge = pathname === "/concierge";
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!sessionLoading && !session) {
+      router.push("/login");
+    }
+  }, [session, sessionLoading, router]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -22,6 +32,23 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // Show loading while checking authentication
+  if (sessionLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          <p className="text-sm text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render anything if not authenticated (will redirect)
+  if (!session) {
+    return null;
+  }
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">

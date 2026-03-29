@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ROUTES } from "@/config/routes";
 import { ArrowRight, TrendingUp, Newspaper, Zap, Shield } from "lucide-react";
+import { useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const HERO_WORDS = ["Understand.", "Guide.", "Convert."];
 
@@ -51,6 +54,21 @@ const STATS = [
 ];
 
 export default function HomePage() {
+  const { data: session, isPending } = useSession();
+  const router = useRouter();
+
+  // Redirect authenticated users to dashboard
+  useEffect(() => {
+    if (!isPending && session) {
+      router.push("/dashboard");
+    }
+  }, [session, isPending, router]);
+
+  // Don't show page content if redirecting
+  if (isPending || session) {
+    return null;
+  }
+
   return (
     <div className="overflow-x-hidden">
       {/* ─── Hero ─────────────────────────────────────────────────────── */}
