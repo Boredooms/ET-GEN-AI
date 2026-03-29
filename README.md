@@ -43,6 +43,16 @@ To democratize institutional-grade financial intelligence, providing every inves
 
 ---
 
+## 🏗️ Detailed Implementation & Logic
+For a "Proper" deep-dive into the technical architecture and the logic behind our **Sectoral Momentum Engine**, **AI Orchestrator**, and **Investment DNA**, please refer to our **[Idea & Implementation Report](idea_implementation_report.md)**.
+
+### Key "Proper" Implementations:
+- **Live Market Health**: Dynamic `Invest/Avoid` signals for Indian markets.
+- **AI Intent Mapping**: Recursive loops to connect user goals with ET products.
+- **Glassmorphic Cockpit**: A premium, industrial-grade UX/UI for serious investors.
+
+---
+
 ## 📦 Getting Started
 
 ### Prerequisites
